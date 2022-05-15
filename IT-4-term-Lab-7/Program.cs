@@ -1,7 +1,10 @@
-﻿var inputLine = Console.ReadLine();
+﻿using System.Collections;
+using  IT_4_term_Lab_7;
+
+var inputLine = Console.ReadLine();
 
 
-foreach (var separator in new string[]{",", "." ,";" ,":", "?", "!", "(", ")", "[", "]", "{", "}", "/"})
+foreach (var separator in new string[]{",", "." ,";" ,":", "?", "!", "(", ")", "[", "]", "{", "}", "/", ">", "<" })
 {
     inputLine = inputLine.Replace(separator, "");
 }
@@ -17,6 +20,7 @@ foreach (var line in file)
 {
     list.Add(line);
 }
+list.Add("");
 
 var listTypos = new List<string>();
 foreach (var word in words)
@@ -29,9 +33,14 @@ foreach (var word in words)
 
 if (listTypos.Count > 0)
 {
-    Console.WriteLine("Looks like you have typos in next words: ");
+    Console.WriteLine("Looks like you have typos in next words:");
     foreach (var wordTypo in listTypos )
     {
-        Console.WriteLine(wordTypo);
+        Console.Write($" '{wordTypo}' ");
+        foreach (var word in LongestCommonSubsequence.GetMostSimilarWords(list, wordTypo))
+        {
+            Console.WriteLine(word);
+        }
     }
+    
 }
