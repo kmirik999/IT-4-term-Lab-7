@@ -32,15 +32,14 @@ foreach (var word in words)
 }
 
 if (listTypos.Count > 0)
-{
+{ 
     Console.WriteLine("Looks like you have typos in next words:");
     foreach (var wordTypo in listTypos )
-    {
-        Console.Write($" '{wordTypo}' ");
-        foreach (var word in LongestCommonSubsequence.GetMostSimilarWords(list, wordTypo))
+    { 
+        Console.Write($" '{wordTypo}' "); 
+        foreach (var word in LevenshteinDistance.GetMostSimilarWords(list, wordTypo.ToLower())) 
         {
-            Console.WriteLine(word);
-        }
+           Console.WriteLine(word);
+        } 
     }
-    
 }
