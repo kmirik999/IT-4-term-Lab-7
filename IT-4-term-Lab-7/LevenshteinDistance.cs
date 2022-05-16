@@ -26,9 +26,13 @@ public class LevenshteinDistance
                 var bDistance = matrix[i,j - 1] + 1 ;
                 var abDistance = matrix[i-1,j-1] + (a[i - 1] != b[j - 1] ? 1 : 0);
                 matrix[i, j] = Math.Min(abDistance, Math.Min(aDistance, bDistance));
+                
+                if (i > 1 && j > 1 && a[i - 1] == b[j - 2] && a[i - 2] == b[j - 1])
+                {
+                    matrix[i, j] = Math.Min(matrix[i, j], matrix[i - 2, j - 2] + 1);
+                }
             }
         }
-
         return matrix[lenA - 1, lenB - 1];
     }
     
